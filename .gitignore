@@ -1,0 +1,6 @@
+/.vscode
+/automata.o
+/outfile.txt
+/pattern_search
+/pattern_search.o
+/set_calculator.o
