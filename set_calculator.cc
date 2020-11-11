@@ -105,8 +105,8 @@ bool Set::operator==(Set kOtherSet) {
   ulong counter;
   if (kOtherSet.limit_elements_size_ > limit_elements_size_) {
     for (counter = 0; counter < limit_elements_size_; counter++) {
-      if (ElementBelongsToSet(counter) ^ 
-          kOtherSet.ElementBelongsToSet(counter))
+      if (kOtherSet.ElementBelongsToSet(counter) ^ 
+          ElementBelongsToSet(counter))
         return false;
     }
     while (counter != kOtherSet.get_limit_elements_size()) {
@@ -117,8 +117,8 @@ bool Set::operator==(Set kOtherSet) {
   } else {
     for (counter = 0; counter < kOtherSet.get_limit_elements_size(); 
          counter++)
-      if (ElementBelongsToSet(counter) ^ 
-          kOtherSet.ElementBelongsToSet(counter))
+      if (kOtherSet.ElementBelongsToSet(counter) ^ 
+          ElementBelongsToSet(counter))
         return false;
     while (counter != get_limit_elements_size()) {
       if (ElementBelongsToSet(counter)) 
@@ -143,7 +143,7 @@ Set Set::operator+(Set kOtherSet) {
             result.InsertElement(pos_long + (iterator * long_size_));
       if (iterator < kOtherSet.get_set().size())
         if (kOtherSet.get_set()[iterator] & (ulong)1 << pos_long)
-          if (!result.ElementBelongsToSet(pos_long + (iterator * long_size_))) 
+          if (!result.ElementBelongsToSet(pos_long + (iterator * long_size_)))
             result.InsertElement(pos_long + (iterator * long_size_));
     }
     return result;
@@ -157,13 +157,15 @@ Set Set::operator-(Set kOtherSet) {
     for (ulong iterator = 0; iterator < set_.size(); iterator++) 
       for (ulong pos_long = 0; pos_long < long_size_; pos_long++)
         if (set_[iterator] & (ulong)1 << pos_long)
-          if (kOtherSet.ElementBelongsToSet(pos_long + (iterator * long_size_)))
+          if (kOtherSet.ElementBelongsToSet((iterator * long_size_)
+                                             + pos_long ))
             result.DeleteElement(pos_long + (iterator * long_size_));
   } else {
-    for (ulong iterator = 0; iterator < kOtherSet.get_set().size(); iterator++) 
+    for (ulong iterator = 0; iterator < kOtherSet.get_set().size(); iterator++)
       for (ulong pos_long = 0; pos_long < long_size_; pos_long++)
         if (set_[iterator] & (ulong)1 << pos_long)
-          if (kOtherSet.ElementBelongsToSet(pos_long + (iterator * long_size_)))
+          if (kOtherSet.ElementBelongsToSet((iterator * long_size_)
+                                             + pos_long))
             result.DeleteElement(pos_long + (iterator * long_size_));    
   }
   return result;

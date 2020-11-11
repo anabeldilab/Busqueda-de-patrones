@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
   Set alphabet(256);
   std::string pattern = argv[1];
   for (unsigned iterator = 97; iterator < 123; iterator++)
-    alphabet.InsertElement(iterator);
+    alphabet.InsertElement(iterator);  // ASCII lowercase letters
 
   Automata automata(alphabet, pattern);
   std::ifstream reader(argv[2]);
@@ -57,7 +57,7 @@ void ErrorMessage(const int kError) {
               << "Write ./pattern_search --help for more info\n";
     exit(1);
   } else if (kError == 2) {
-    std::cerr << "Usage: ./pattern_search pattern infile.txt outfile.txt" 
+    std::cerr << "Usage: ./pattern_search pattern infile.txt outfile.txt"
               << "\nFor OPTION:\n" 
               << "\t-h,--help\t\tShow this help message\n";
     exit(1);

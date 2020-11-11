@@ -24,8 +24,8 @@ Automata::Automata(const Set kAlphabet, const std::string kPattern): alphabet_(k
     std::cerr << "Error: pattern does not belong to the alphabet\n";
     exit(1);
   }
-    for (unsigned iterator = 0; iterator < kPattern.size(); iterator++)
-      pattern_.push_back(kPattern[iterator]);
+  for (unsigned iterator = 0; iterator < kPattern.size(); iterator++)
+    pattern_.push_back(kPattern[iterator]);
 }
 
 // Default destructor
@@ -42,14 +42,14 @@ void Automata::set_pattern(const std::vector<char> NewPattern) {
 // Returns true if the string belongs to the alphabet
 bool Automata::BelongToAlphabet(const std::string kAnalyzeWord) {
   for (unsigned iterator = 0; iterator < kAnalyzeWord.size(); iterator++)
-      if (!alphabet_.ElementBelongsToSet((ulong)kAnalyzeWord[iterator]))
-        return false;
+    if (!alphabet_.ElementBelongsToSet((ulong)kAnalyzeWord[iterator]))
+      return false;
   return true;
 }
 
 // How the automata works
 bool Automata::PatternSearch(const std::string kAnalyzeWord) {
-  int pos = 0, state_ = 0; 
+  int pos = 0, state_ = 0;
   while (pos < kAnalyzeWord.size()) {
     for (unsigned iterator = pos; iterator < kAnalyzeWord.size(); iterator++) {
       if (pattern_[state_] == kAnalyzeWord[iterator]) {
