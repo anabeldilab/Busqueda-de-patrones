@@ -4,7 +4,7 @@
 /// pattern in a string of characters
 ///
 /// @author Anabel Díaz Labrador <alu0101206011@ull.edu.es>
-/// @version Version 1: Automata with 
+/// @version Version 1: Automata with input strings
 /// @date 10 Nov 2020
 
 #include "set_calculator.h"
@@ -31,16 +31,14 @@ class Automata {
 
     /// @brief Returns true if the string belongs to the alphabet
     /// @param kAnalyzeWord
-    bool BelongToAlphabet(const std::string);
+    bool BelongToAlphabet(const std::string&);
 
     /// @brief How the automata works
     /// @param kAnalyzeWord
-    bool PatternSearch(const std::string);
+    bool PatternSearch(const std::string&);
 
     /// @brief Write the results of automata
     /// @param os
     /// @param kAnalyzeWord
-    void Write(std::ostream&, const std::string);
-
+    void Write(std::ostream&, const std::string&);
 };
-

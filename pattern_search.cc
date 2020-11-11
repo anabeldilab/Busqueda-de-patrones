@@ -21,7 +21,7 @@
 void ErrorMessage(const int);
 
 int main(int argc, char *argv[]) {
-  if (argc != 4 && argc != 2) { ErrorMessage(1); }     
+  if (argc != 4 && argc != 2) { ErrorMessage(1); }
   if ((std::string)argv[1] == "--help" || (std::string)argv[1] == "-h")
     if (argc == 2)
       ErrorMessage(2);
@@ -35,16 +35,16 @@ int main(int argc, char *argv[]) {
   std::ifstream reader(argv[2]);
   if (!reader) ErrorMessage(3);
 
-  std::vector<std::string> v_strings;
+  std::vector<std::string> vector_strings;
   while (!reader.eof()) {
     std::string analyze_words;
     reader >> analyze_words;
-    v_strings.push_back(analyze_words);
+    vector_strings.push_back(analyze_words);
   }
   reader.close();
   std::ofstream writer(argv[3]);
-  for (unsigned iterator = 0; iterator < v_strings.size(); iterator++)
-    automata.Write(writer, v_strings[iterator]);
+  for (unsigned iterator = 0; iterator < vector_strings.size(); iterator++)
+    automata.Write(writer, vector_strings[iterator]);
   writer.close();
 
   return 0;

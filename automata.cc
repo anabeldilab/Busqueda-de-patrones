@@ -40,33 +40,35 @@ void Automata::set_pattern(const std::vector<char> NewPattern) {
 }
 
 // Returns true if the string belongs to the alphabet
-bool Automata::BelongToAlphabet(const std::string kAnalyzeWord) {
+bool Automata::BelongToAlphabet(const std::string& kAnalyzeWord) {
   for (unsigned iterator = 0; iterator < kAnalyzeWord.size(); iterator++)
     if (!alphabet_.ElementBelongsToSet((ulong)kAnalyzeWord[iterator]))
       return false;
   return true;
 }
 
-// How the automata works
-bool Automata::PatternSearch(const std::string kAnalyzeWord) {
-  int pos = 0, state_ = 0;
-  while (pos < kAnalyzeWord.size()) {
-    for (unsigned iterator = pos; iterator < kAnalyzeWord.size(); iterator++) {
+// Search the pattern in the parameter string 
+bool Automata::PatternSearch(const std::string& kAnalyzeWord) {
+  int position = 0, state_ = 0;
+  while (position < kAnalyzeWord.size()) {
+    for (unsigned iterator = position; iterator < kAnalyzeWord.size(); 
+                                       iterator++) {
       if (pattern_[state_] == kAnalyzeWord[iterator]) {
         ++state_;
-        if (state_ == pattern_.size()) return true;
+        if (state_ == pattern_.size())
+          return true;
       } else {
         state_ = 0;
         break;
       }
     }
-    ++pos;
+    ++position;
   }
   return false;
 }
 
 // Write the results of automata
-void Automata::Write(std::ostream& os, const std::string kAnalyzeWord) {
+void Automata::Write(std::ostream& os, const std::string& kAnalyzeWord) {
   if (!BelongToAlphabet(kAnalyzeWord)) {
     os << "Error\n";
   } else if(PatternSearch(kAnalyzeWord)) {
