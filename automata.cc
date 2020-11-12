@@ -19,7 +19,7 @@
 #include "automata.h"
 
 // Default constructor
-Automata::Automata(const Set kAlphabet, const std::string kPattern): alphabet_(kAlphabet) {
+Automata::Automata(const Set kAlphabet, const std::string& kPattern): alphabet_(kAlphabet) {
   if (!BelongToAlphabet(kPattern)) {
     std::cerr << "Error: pattern does not belong to the alphabet\n";
     exit(1);

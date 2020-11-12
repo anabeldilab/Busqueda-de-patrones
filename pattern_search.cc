@@ -11,6 +11,7 @@
 /// 
 /// To compile: make 
 /// To clean files: make clean
+//Range for c++ solo funciona con c++11
 
 #include <iostream> 
 #include <fstream>
@@ -26,9 +27,11 @@ int main(int argc, char *argv[]) {
     if (argc == 2)
       ErrorMessage(2);
 
-  Set alphabet(256);
+  const int kTotalAscii = 256;
+  Set alphabet(kTotalAscii);
   std::string pattern = argv[1];
-  for (unsigned iterator = 97; iterator < 123; iterator++)
+  const unsigned kFirstLetter = 97, kLastLetter = 123;
+  for (unsigned iterator = kFirstLetter; iterator < kLastLetter; iterator++)
     alphabet.InsertElement(iterator);  // ASCII lowercase letters
 
   Automata automata(alphabet, pattern);
@@ -57,7 +60,7 @@ void ErrorMessage(const int kError) {
               << "Write ./pattern_search --help for more info\n";
     exit(1);
   } else if (kError == 2) {
-    std::cerr << "Usage: ./pattern_search pattern infile.txt outfile.txt"
+    std::cerr << "Usage: ./pattern_search pattern infile.txt outfile.txt" 
               << "\nFor OPTION:\n" 
               << "\t-h,--help\t\tShow this help message\n";
     exit(1);

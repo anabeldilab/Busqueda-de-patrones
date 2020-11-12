@@ -18,7 +18,7 @@ class Automata {
     /// @brief Initialize all attributes using the following parameters
     /// @param kAlphabet
     /// @param kPattern
-    Automata(const Set, const std::string);
+    Automata(const Set, const std::string&);
 
     /// @brief Default destructor
     ~Automata();
